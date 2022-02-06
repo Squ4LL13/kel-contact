@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% import "calendar/next-meet.html.twig" as meetings %}
+
+{% block title %}
+	Contact - {{ contact.name }}
+{% endblock %}
+
+{% block body %}
+	<div class="contact-details-container">
+		<div class="contact-details-container-header">
+			<h1 class="contact-name">{{ contact.name }}</h1>
+			{% if contact.category %}
+				<div class="contact-category">
+					<a href="{{ path('category_show', {'id': contact.category.id}) }}">{{ contact.category.name }}</a>
+				</div>
+				{% else %}
+			{% endif %}
+			<div class="contact-service-company-container">
+				{% if contact.service %}
+					<small class="contact-service">{{ contact.service }}</small>
+				{% endif %}
+				{% if contact.company %}
+					<small class="contact-company">{{ contact.company }}</small>
+				{% endif %}
+			</div>
+		</div>
+		<div class="contact-details-container-body dflex">
+			<div class="primary-info-container">
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Nom</div>
+					<div class="contact-details-content">{{ contact.lastname ? contact.lastname : 'Non renseigné' }}</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Prénom</div>
+					<div class="contact-details-content">{{ contact.firstname ? contact.firstname : 'Non renseigné' }}</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Email</div>
+					<div class="contact-details-content">
+						{% if contact.email %}
+							<a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+						{% else %}
+							Non renseigné
+						{% endif %}
+					</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Téléphone fixe</div>
+					<div class="contact-details-content">
+						{% if contact.phone %}
+							<a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
+						{% else %}
+							Non renseigné
+						{% endif %}
+					</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Téléphone mobile</div>
+					<div class="contact-details-content">
+						{% if contact.mobile %}
+							<a href="tel:{{ contact.mobile }}">{{ contact.mobile }}</a>
+						{% else %}
+							Non renseigné
+						{% endif %}
+					</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Adresse postale</div>
+					<div class="contact-details-content">{{ contact.address ? contact.address : 'Non renseignée' }}</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-content bold">
+						{% if contact.link %}
+							<a href="{{ contact.link }}" target="_blank">Site internet</a>
+						{% else %}
+							Non renseigné
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="secondary-info-container">
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Lieu de stockage des documents</div>
+					<div class="contact-details-content">{{ contact.storagePlace ? contact.storagePlace : 'Non renseignée' }}</div>
+				</div>
+				<div class="contact-details-body-group">
+					<div class="contact-details-label bold">Commentaire</div>
+					<div class="contact-details-content">{{ contact.note ? contact.note | raw : 'Aucun commentaire' }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Créé le</th>
+				<td>{{ contact.createdAt ? contact.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Mis à jour le</th>
+				<td>{{ contact.updatedAt ? contact.updatedAt|date('d/m/Y H:i:s') : 'Jamais mis à jour' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('home') }}">Retour à la liste</a>
+
+	<a href="{{ path('contact_edit', {'id': contact.id}) }}">Modifier</a>
+
+	{{ meetings.meets(contact) }}
+{% endblock %}

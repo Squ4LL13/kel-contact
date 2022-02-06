@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kel Contact - Nouveau contact{% endblock %}
+
+{% block body %}
+    <h1 class="new-contact-title">Ajouter un nouveau contact</h1>
+
+    {{ include('contact/_form.html.twig') }}
+
+    <a href="{{ path('home') }}">Revenir à la liste des contacts</a>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.2/tinymce.min.js"></script>
+	<script src="{{ asset('assets/js/tinymce/init.js') }}"></script>
+{% endblock %}

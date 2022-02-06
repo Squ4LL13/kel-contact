@@ -1,0 +1,49 @@
+{% import 'components/toolbox.html.twig' as toolbox %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Kel Contact{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>" />
+		{% block stylesheets %}
+
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.3/dist/sweetalert2.min.css"/>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+		{% endblock %}
+	</head>
+	<body>
+		<header class="header">
+			{% include 'components/navbar.html.twig' %}
+		</header>
+		<div class="main-container">
+			<h1 class="page-title">{% block pageTitle %} {{ block('title') }} {% endblock %}</h1>
+			<div class="content-container">
+				<div class="toolbox-container">
+					<div class="toolbox-container-sticky">
+						{% block toolbox %}
+							{{ toolbox.buttons() }}
+						{% endblock %}
+					</div>
+				</div>
+				<div class="main-content">
+					{% block body %}
+				
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+			{% include 'components/footer.html.twig' %}
+			{{ flasher_render() }}
+			{% block javascripts %}{% endblock %}
+				{# <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.3/dist/sweetalert2.all.min.js"></script> #}
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+				{# <script src="{{ asset('assets/js/app.js') }}"></script> #}
+		</body>
+	</html>

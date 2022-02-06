@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% import 'components/toolbox.html.twig' as toolbox %}
+
+{% block title %}Liste des catégories{% endblock %}
+{% block toolbox %}
+	{{ toolbox.buttons(true, false, true) }}
+{% endblock %}
+{% block body %}
+	<div class="categories-header">
+		<h1 class="categories-list-title">Liste des catégories</h1>
+	</div>
+
+	<div class="categories-list-container">
+		{% for category in categories %}
+			<div class="category-container">
+				<h2 class="category-container-title">
+					<a href="{{ path('category_show', {'id': category.id}) }}">{{ category.name }}</a>
+				</h2>
+				<span class="category-container-edit-btn">
+					<a href="{{ path('category_edit', {'id': category.id}) }}">
+						<i class="fas fa-edit"></i>
+					</a>
+				</span>
+				<div class="category-container-contact">
+					<ul>
+						{% for contact in category.contacts %}
+							<li>
+								<a href="{{ path('contact_show', {'id': contact.id}) }}">{{ contact.name }}</a>
+							</li>
+						{% else %}
+							<p>Aucun contact dans cette catégorie</p>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		{% else %}
+			<p>Aucune catégories trouvées</p>
+		{% endfor %}
+	</div>
+
+{% endblock %}

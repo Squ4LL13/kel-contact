@@ -1,0 +1,22 @@
+.fc {
+    background-color: $secondary-color;
+    padding: 25px;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+.fc .fc-button {
+    border-radius: 3px;
+}
+
+.fc .fc-button-primary {
+    background-color: $primary-txt-color;
+    &:hover {
+        background: lighten($primary-txt-color, 25%);
+    }
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+    background-color: $primary-color;
+    color: $primary-txt-color;
+}

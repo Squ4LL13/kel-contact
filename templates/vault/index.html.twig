@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% import 'components/toolbox.html.twig' as toolbox %}
+
+{% block title %}Liste des mots de passe{% endblock %}
+{% block toolbox %}
+	{{ toolbox.buttons(true, false, false, true) }}
+    {{ toolbox.searchBar("vault") }}
+    {{ toolbox.searchResult() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Coffre fort</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Identifiant / Email</th>
+                <th>Password</th>
+                <th>Link</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vault in vaults %}
+            <tr>
+                <td>{{ vault.id }}</td>
+                <td>{{ vault.name }}</td>
+                <td>{{ vault.username }}</td>
+                <td>{{ vault.password }}</td>
+                <td>{{ vault.link }}</td>
+                <td>{{ vault.note }}</td>
+                <td>
+                    <a href="{{ path('vault_show', {'id': vault.id}) }}">Afficher</a>
+                    <a href="{{ path('vault_edit', {'id': vault.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun résultats trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vault_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('assets/js/filters.js') }}"></script>
+{% endblock %}

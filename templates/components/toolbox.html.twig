@@ -1,0 +1,49 @@
+{% macro buttons(return = true, addContact = false, addCategory = false, addVault = false, addMeeting = false) %}
+    <div class="buttons-container">
+        <ul>
+            {% if return %}
+                <li><a href="{{ path('home') }}">Retour</a></li>
+            {% endif %}
+
+            {% if addContact %}
+                <li><a href="{{ path('contact_new') }}"><i class="far fa-plus-square"></i> Ajouter un contact</a></li>
+            {% endif %}
+
+            {% if addCategory %}
+                <li><a href="{{ path('category_new') }}"><i class="far fa-plus-square"></i> Ajouter une catégorie</a></li>
+            {% endif %}
+
+            {% if addVault %}
+                <li><a href="{{ path('vault_new') }}"><i class="far fa-plus-square"></i> Ajouter un élément</a></li>
+            {% endif %}
+
+            {% if addMeeting %}
+                <li><a href="{{ path('meet_new') }}"><i class="far fa-plus-square"></i> Ajouter un rendez-vous</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endmacro %}
+
+{% macro searchBar(page, placeholder = "Rechercher") %}
+    <div class="search-bar-container">
+        <div class="search-bar-form">
+            <form data-trigger="search-form" action="" method="GET">
+                <input type="search" name="{{ page }}-search" id="{{ page }}-search" placeholder="{{ placeholder }}">
+                <small class>Tapez au moins 3 caratères</small>
+            </form>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro searchResult() %}
+    <div id="search-result">
+        <ul></ul>
+    </div>
+    <script>
+        
+    </script>
+{% endmacro %}
+
+{% macro anchorLetters() %}
+    <div class="anchor-letters-container"></div>
+{% endmacro %}

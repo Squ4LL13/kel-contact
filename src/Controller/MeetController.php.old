@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Meet;
+use App\Form\MeetType;
+use App\Repository\MeetRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+#[
+    Route('/calendar'),
+    IsGranted('ROLE_USER')
+]
+class MeetController extends AbstractController
+{
+    #[Route('/', name: 'calendar_show')]
+    public function show(): Response
+    {
+        return $this->render('calendar/index.html.twig');
+    }
+
+    #[
+        Route('/json', name: 'calendar_json', methods: ['GET'])
+    ]
+    public function sendJsonMeetings(MeetRepository $meetRepository): Response
+    {
+        $data = $meetRepository->findAll();
+        $jsonArr = [];
+        foreach ($data as $value) {
+            $jsonArr[] = [
+                'title' => $value->getContact()->getName(),
+                'start' => $value->getMeetingStart(),
+                'end' => $value->getMeetingEnd()
+            ];
+        }
+
+        return $this->json($jsonArr, 200, [], ['groups' => 'meet:read']);
+    }
+
+    #[Route('/new', name: 'calendar_new', methods: ['GET', 'POST'])]
+    public function newMeeting(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $meet = new Meet();
+        $form = $this->createForm(MeetType::class);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contactName = $form->get('contact')->getData()->getName();
+            if ($form->get('title')->getData() === null) {
+                $meet->setTitle($contactName);
+            }
+            dd($meet);
+            $entityManager->persist($meet);
+            $entityManager->flush();
+        }
+
+        return $this->renderForm('calendar/new.html.twig', [
+            'form' => $form
+        ]);
+    }
+}

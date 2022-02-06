@@ -1,0 +1,16 @@
+{% macro meets(contact) %}
+	<ul>
+		{% for meet in contact.meets %}
+			<li>{{ meet.title }}</li>
+			<li>Le
+				<strong>{{ meet.meetingStart | date('d/m/Y') }}</strong>
+				de
+				{{ meet.meetingStart | date('H') }}h{{ meet.meetingStart | date('i') }}
+				à
+				{{ meet.meetingEnd | date('H') }}h{{ meet.meetingEnd | date('i') }}</li>
+		{% else %}
+			<li>Aucun rendez-vous prévu pour
+				<strong>{{ contact.name }}</strong>.</li>
+		{% endfor %}
+	</ul>
+{% endmacro %}

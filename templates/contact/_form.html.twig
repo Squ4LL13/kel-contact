@@ -1,0 +1,98 @@
+{{ form_start(form) }}
+<div class="contact-form-container dflex">
+    <div class="contact-primary-container">
+        <div class="contact-info-block contact-main-info-container dflex">
+            <div class="form-group">
+                {{ form_label(form.name, 'Désignation *') }}
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+                {{ form_help(form.name) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.category, 'Catégorie du contact') }}
+                {{ form_errors(form.category) }}
+                {{ form_widget(form.category, {'required': false}) }}
+                {{ form_help(form.category) }}
+            </div>
+        </div>
+        <div class="contact-info-block contact-identity-container dflex">
+            <div class="form-group">
+                {{ form_label(form.lastname, 'Nom') }}
+                {{ form_errors(form.lastname) }}
+                {{ form_widget(form.lastname) }}
+                {{ form_help(form.lastname) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.firstname, 'Prénom') }}
+                {{ form_errors(form.firstname) }}
+                {{ form_widget(form.firstname) }}
+                {{ form_help(form.firstname) }}
+            </div>
+        </div>
+        <div class="contact-info-block contact-job-container dflex">
+            <div class="form-group">
+                {{ form_label(form.service, 'Service / Profession') }}
+                {{ form_errors(form.service) }}
+                {{ form_widget(form.service) }}
+                {{ form_help(form.service) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.company, 'Compagnie / Entreprise') }}
+                {{ form_errors(form.company) }}
+                {{ form_widget(form.company) }}
+                {{ form_help(form.company) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.link, 'Adresse du site internet') }}
+                {{ form_errors(form.link) }}
+                {{ form_widget(form.link, {'attr': {'placeholder': 'ex : https://www.exemple.fr'}}) }}
+                {{ form_help(form.link) }}
+            </div>
+        </div>
+        <div class="contact-info-block contact-coordinates-container dflex">
+            <div class="form-group">
+                {{ form_label(form.email, 'Adresse email') }}
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email, {'required': false, 'attr': {'placeholder': 'ex : exemple@domaine.fr'}}) }}
+                {{ form_help(form.email) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.phone, 'Téléphone fixe') }}
+                {{ form_errors(form.phone) }}
+                {{ form_widget(form.phone, {'required': false, 'attr': {'placeholder': 'ex : 04 71 00 00 00'}}) }}
+                {{ form_help(form.phone) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.mobile, 'Télémphone mobile') }}
+                {{ form_errors(form.mobile) }}
+                {{ form_widget(form.mobile, {'required': false, 'attr': {'placeholder': 'ex : 06 01 02 03 04'}}) }}
+                {{ form_help(form.mobile) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.address, 'Adresse postale') }}
+                {{ form_errors(form.address) }}
+                {{ form_widget(form.address) }}
+                {{ form_help(form.address) }}
+            </div>
+        </div>
+        <div class="contact-info-block contact-unpersonal-info-container dflex">
+            <div class="form-group">
+                {{ form_label(form.storagePlace, 'Lieu de stockage des documents') }}
+                {{ form_errors(form.storagePlace) }}
+                {{ form_widget(form.storagePlace) }}
+                {{ form_help(form.storagePlace) }}
+            </div>
+        </div>
+    </div>
+    <div class="contact-secondary-container">
+        <div class="form-group">
+            {{ form_label(form.note, 'Commentaire') }}
+            {{ form_errors(form.note) }}
+            {{ form_widget(form.note) }}
+            {{ form_help(form.note) }}
+        </div>
+    </div>
+</div>
+{{ form_rest(form) }}
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

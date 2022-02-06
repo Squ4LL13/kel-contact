@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% import 'components/toolbox.html.twig' as toolbox %}
+
+
+{% block title %}Liste des contacts{% endblock %}
+
+{% block toolbox %}
+	{{ toolbox.buttons(false, true) }}
+	{{ toolbox.searchBar("contact") }}
+	{{ toolbox.searchResult() }}
+	{{ toolbox.anchorLetters() }}
+{% endblock %}
+
+{% block body %}
+	<div class="home-container">
+		{% for letter in letterGroup %}
+			{% if letter.contacts is empty %}
+				{% else %}
+					<div class="letter-group">
+						<h2 class="letter-title" id="{{ letter.letter | e }}">{{ letter.letter | e }}</h2>
+						<ul>
+							{% for contact in letter.contacts %}
+								<li>
+									<div class="contact-perso">
+										<a class="contact-name" href="{{ path('contact_show', {'id': contact.id}) }}">
+											{{ contact.name | e }}
+										</a>
+										<span>{{ "(#{contact.firstname ? contact.firstname ~ ' ' : ''}#{contact.lastname ? contact.lastname : ''})" }}</span>
+										{% if contact.category %}
+											-
+											<span>
+												<a href="{{ path('category_show', {'id': contact.category.id}) }}">{{ contact.category.name | e }}</a>
+											</span>
+										{% endif %}
+									</div>
+									<div class="contact-coordonates">
+										{% if contact.phone %}
+											<div class="contact-phone">
+												<a class="contact-phonenumber" href="tel:{{ contact.phone | e }}">
+													<small>{{ contact.phone }}</small>
+												</a>
+											</div>
+										{% endif %}
+										{% if contact.mobile %}
+											<div class="contact-mobile">
+												<a class="contact-phonenumber" href="tel:{{ contact.mobile | e }}">
+													<small>{{ contact.mobile | e }}</small>
+												</a>
+											</div>
+										{% endif %}
+										{% if contact.email %}
+											<div class="contact-email-contaner">
+												<a class="contact-email" href="mailto:{{ contact.email }}">
+													<small>{{ contact.email }}</small>
+												</a>
+											</div>
+										{% endif %}
+									</div>
+								</li>
+								{% else %}
+							{% endfor %}
+						</ul>
+					</div>
+			{% endif %}
+		{% else %}
+			<p>Aucun contact enregisré pour le moment.</p>
+			<p>Créez votre premier contact en cliquant sur
+				<a href="{{ path('contact_new') }}">ce lien</a>
+			</p>
+		{% endfor %}
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="{{ asset('assets/js/home.js') }}"></script>
+	<script src="{{ asset('assets/js/filters.js') }}"></script>
+{% endblock %}

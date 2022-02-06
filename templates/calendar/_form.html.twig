@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+<div class="meeting-form-container">
+	<div>
+		{{ form_label(form.contact, 'Contact') }}
+		{{ form_errors(form.contact) }}
+		{{ form_widget(form.contact) }}
+		{{ form_help(form.contact) }}
+	</div>
+	<div>
+		{{ form_label(form.title) }}
+		{{ form_errors(form.title) }}
+		{{ form_widget(form.title) }}
+		{{ form_help(form.title) }}
+	</div>
+	<div>
+		{{ form_label(form.meetingStart, 'Date de début') }}
+		{{ form_errors(form.meetingStart) }}
+		{{ form_widget(form.meetingStart) }}
+		{{ form_help(form.meetingStart) }}
+	</div>
+	<div>
+		{{ form_label(form.meetingEnd, 'Date de fin') }}
+		{{ form_errors(form.meetingEnd) }}
+		{{ form_widget(form.meetingEnd) }}
+		{{ form_help(form.meetingEnd) }}
+	</div>
+</div>
+{{ form_rest(form) }}
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

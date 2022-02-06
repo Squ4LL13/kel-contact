@@ -1,0 +1,7 @@
+.delete-button-success {
+    @include button(rgb(70, 136, 223), $secondary-color, 35px, 3px);
+}
+
+.delete-button-cancel {
+    @include button(rgb(212, 88, 40), $secondary-color, 35px, 3px);
+}

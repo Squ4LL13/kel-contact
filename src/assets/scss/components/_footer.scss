@@ -1,0 +1,13 @@
+.footer {
+    width: 100%;
+    height: $footer-height;
+    background: $primary-color;
+    border-top: 1px solid $primary-txt-color;
+    .footer-app-web, .footer-made-by {
+        margin: 0 5px;
+    }
+    .footer-app-web {
+        font-weight: bold;
+        font-style: italic;
+    }
+}

@@ -1,0 +1,69 @@
+.navbar-container {
+    width: 100%;
+    height: $navbar-height;
+    background: $primary-color;
+    border-bottom: 1px solid $primary-txt-color;
+    a {
+        color: $primary-txt-color;
+    }
+    &-logo,
+    &-logout {
+        height: 100%;
+        line-height: $navbar-height;
+        width: 20%;
+    }
+    &-logo {
+        padding-left: 25px;
+        .app-title {
+            font-size: 1.7rem;
+        }
+    }
+    &-logout {
+        font-size: 1.5rem;
+        padding-right: 25px;
+        span {
+            padding-left: 5px;
+            font-size: 1rem;
+        }
+    }
+    &-navbar {
+        height: 100%;
+        font-weight: bold;
+        font-size: 1.1rem;
+        .navbar-item {
+            height: 100%;
+            padding: 0 20px;
+            transition: background 0.3s ease-in-out;
+            &::after {
+                content: "";
+                display: block;
+                width: 0;
+                height: 3px;
+                background-color: $primary-txt-color;
+                margin: -15px auto 0 auto;
+                transition: width 0.3s ease-in-out;
+            }
+            a {
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                line-height: $navbar-height;
+                text-align: center;
+                transition: color 0.3s ease-in-out;
+                i {
+                    margin-right: 5px;
+                }
+            }
+            &:hover {
+                background: darken($primary-color, 45%);
+            }
+            &:hover a {
+                color: #fff;
+            }
+            &:hover::after {
+                width: 80%;
+                background: #fff;
+            }
+        }
+    }
+}

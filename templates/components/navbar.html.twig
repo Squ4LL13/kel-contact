@@ -1,0 +1,46 @@
+{% block navbar %}
+	<div class="navbar-container dflex aic jcsb">
+		<div class="navbar-container-logo">
+			<a href="{{ path('home') }}">
+				<h2 class="app-title">
+					<i class="fas fa-search"></i>
+					Kel Contact</h2>
+			</a>
+		</div>
+		{% if is_granted('ROLE_USER') %}
+			<ul class="navbar-container-navbar dflex jcc aic">
+				<li class="navbar-item">
+					<a href="{{path('home')}}">
+						<i class="far fa-address-book"></i>
+						Contacts</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{{path('category_index')}}">
+						<i class="far fa-list-alt"></i>
+						Catégories</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{{path('laboratories_index')}}">
+						<i class="fas fa-atom"></i>
+						Laboratoires</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{{path('calendar')}}">
+						<i class="far fa-calendar-alt"></i>
+						Mes Rendez-vous</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{{path('vault_index')}}">
+						<i class="fas fa-key"></i>
+						Coffre fort</a>
+				</li>
+			</ul>
+			<div class="navbar-container-logout">
+				<a class="dflex aic jcfe" href="{{ path('app_logout') }}">
+					<i class="fas fa-power-off"></i>
+					<span>Déconnexion</span>
+				</a>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

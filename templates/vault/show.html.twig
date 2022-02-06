@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vault{% endblock %}
+
+{% block body %}
+    <h1>Vault</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vault.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ vault.name }}</td>
+            </tr>
+            <tr>
+                <th>Identifiant / Email</th>
+                <td>{{ vault.username ? vault.username : 'Pas d\identifiant enregistré' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ vault.password ? vault.password : 'Pas de mot de passe enregistré' }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ vault.link ? vault.link : 'Pas d\'url enregistrée' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ vault.note ? vault.note : 'Pas de note' }}</td>
+            </tr>
+            <tr>
+                <th>Date de mise à jour</th>
+                <td>{{ vault.updatedAt ? vault.updatedAt | date('d/m/Y H:i:s') : 'Jamais mis à jour' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('vault_index') }}">back to list</a>
+
+    <a href="{{ path('vault_edit', {'id': vault.id}) }}">edit</a>
+
+    {{ include('vault/_delete_form.html.twig') }}
+{% endblock %}

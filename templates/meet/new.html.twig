@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Meet{% endblock %}
+
+{% block body %}
+    <h1>Create new Meet</h1>
+
+    {{ include('meet/_form.html.twig') }}
+
+    <a href="{{ path('calendar') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+.categories-list-container {
+    .category-container {
+        &-title,
+        &-edit-btn {
+            display: inline-block;
+        }
+        padding: 25px 0;
+        &-title {
+            padding-bottom: 15px;
+        }
+        &-contact {
+            padding: 0 0 0 25px;
+        }
+    }
+}
+
+.add-category {
+    position: absolute;
+    top: calc($navbar-height + 30px);
+    right: 30px;
+    @include button($primary-color, $primary-txt-color, 40px, 3px);
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-size: 0.9rem;
+    &:hover {
+        background: darken($primary-color, 30%);
+        color: $secondary-color;
+    }
+}

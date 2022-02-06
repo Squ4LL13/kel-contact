@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vault{% endblock %}
+
+{% block body %}
+    <h1>Create new Vault</h1>
+
+    {{ include('vault/_form.html.twig') }}
+
+    <a href="{{ path('vault_index') }}">back to list</a>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.2/tinymce.min.js"></script>
+	<script src="{{ asset('assets/js/tinymce/init.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kel Contact - Se conencter !{% endblock %}
+{% block toolbox %}{% endblock %}
+{% block body %}
+	<form class="login-form" method="post">
+		{% if error %}
+			<div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		{% if app.user %}
+			<div class="mb-3">
+				Vous êtes connecté en tant que
+				{{ app.user.username }},
+				<a href="{{ path('app_logout') }}">Deconnexion</a>
+			</div>
+		{% endif %}
+
+		<h1 class="login-form-title">S'identifier</h1>
+		<div class="form-fields">
+			<div class="form-group">
+				<label for="inputUsername">Identifiant</label>
+				<input type="username" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword">Mot de passe</label>
+				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+			</div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<button class="login-btn" type="submit">
+				Se connecter
+			</button>
+		</div>
+	</form>
+{% endblock %}

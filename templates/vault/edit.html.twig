@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Vault{% endblock %}
+
+{% block body %}
+    <h1>Edit Vault</h1>
+
+    {{ include('vault/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('vault_index') }}">back to list</a>
+
+    {{ include('vault/_delete_form.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.2/tinymce.min.js"></script>
+	<script src="{{ asset('assets/js/tinymce/init.js') }}"></script>
+{% endblock %}

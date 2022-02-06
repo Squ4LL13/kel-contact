@@ -1,0 +1,35 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.name, 'Désignation *') }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name, {'attr': {'placeholder': 'Nom de l\'élément'}}) }}
+        {{ form_help(form.name) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.username, 'Identifiant de connexion au site') }}
+        {{ form_errors(form.username) }}
+        {{ form_widget(form.username, {'attr': {'placeholder': 'ex : identifiant ou identifiant@exemple.fr'}}) }}
+        {{ form_help(form.username) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.password, 'Mot de passe') }}
+        {{ form_errors(form.password) }}
+        {{ form_widget(form.password) }}
+        {{ form_help(form.password) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.link, 'Adresse du site') }}
+        {{ form_errors(form.link) }}
+        {{ form_widget(form.link, {'attr': {'placeholder': 'ex : https://www.exemple.fr'}}) }}
+        {{ form_help(form.link) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.note, 'Commentaire') }}
+        {{ form_errors(form.note) }}
+        {{ form_widget(form.note) }}
+        {{ form_help(form.note) }}
+    </div>
+    {{ form_rest(form) }}
+    <p class="fields-required-message">* champs obligatoires</p>
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

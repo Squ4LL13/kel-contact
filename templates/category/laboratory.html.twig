@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% import 'components/toolbox.html.twig' as toolbox %}
+
+{% block title %}Les laboratoires
+{% endblock %}
+{% block toolbox %}
+	{{ toolbox.buttons(true, true) }}
+{% endblock %}
+{% block body %}
+	<div class="laboratories-container">
+		<ul>
+			{% if laboratories %}
+				{% for contact in laboratories.contacts %}
+					<li>
+						<a href="{{ path('contact_show', {'id': contact.id}) }}">
+							{{ contact.name | e }}
+						</a>
+					</li>
+				{% else %}
+					<li>Aucun laboratoires trouvés</li>
+				{% endfor %}
+			{% else %}
+				<li>La catégorie "Laboratoire" n'existe pas</li>
+			{% endif %}
+		</ul>
+	</div>
+
+	<a href="{{ path('category_index') }}">Retourner à la liste des contacts</a>
+
+{% endblock %}

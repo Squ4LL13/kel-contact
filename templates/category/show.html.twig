@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ category.name }}
+{% endblock %}
+
+{% block body %}
+	<div class="category-show-container">
+		<div class="category-show-header">
+			<h1 class="dinlineblock">{{ category.name }}</h1>
+			<a href="{{ path('category_edit', {'id': category.id}) }}">
+				<i class="fas fa-edit"></i>
+			</a>
+		</div>
+
+		<div class="category-show-body">
+			<div class="category-show-body-details-group">
+				<div class="category-show-body-details bold">
+					Nom
+				</div>
+				<div class="category-show-body-details">
+					{{ category.name }}
+				</div>
+			</div>
+			<div class="category-show-body-details-group">
+				<div class="category-show-body-details bold">
+					Étiquette
+				</div>
+				<div class="category-show-body-details">
+					{{ category.tag ? category.tag : 'Cette catégorie n\'a pas d\'étiquette' }}
+				</div>
+			</div>
+			<div class="category-show-body-details-group">
+				<div class="category-show-body-details bold">
+					Date de création
+				</div>
+				<div class="category-show-body-details">
+					Le {{ category.createdAt | date('d/m/Y à H:m:i') }}
+				</div>
+			</div>
+			<div class="category-show-body-details-group">
+				<ul>
+					{% for contact in category.contacts %}
+						<li><a href="{{ path('contact_show', {'id': contact.id}) }}">{{ contact.name | e }}</a></li>
+					{% else %}
+						<li>Cette catégorie n'a pas de contact</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<a href="{{ path('category_index') }}">back to list</a>
+
+
+	{{ include('category/_delete_form.html.twig') }}
+{% endblock %}

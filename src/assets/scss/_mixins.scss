@@ -1,0 +1,26 @@
+@mixin button($bg-color, $txt-color, $height, $radius: 3px) {
+    background: $bg-color;
+    color: $txt-color;
+    height: $height;
+    border-radius: $radius;
+    border: none;
+    display: block;
+    line-height: $height;
+    text-align: center;
+    border: 1px solid $txt-color;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+@mixin breakpoints($screen) {
+    @if $screen == 'tab' {
+        @media screen and (max-width: 1024px) {
+            @content;
+        }
+    } 
+    @else if $screen == 'mobile' {
+        @media screen and (max-width: 768px) {
+            @content;
+        }
+    }
+}

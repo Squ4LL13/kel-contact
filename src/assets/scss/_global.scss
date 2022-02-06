@@ -1,0 +1,75 @@
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $primary-typo;
+    color: $primary-txt-color;
+    // background: $secondary-color;
+
+    .main-container {
+        width: 100%;
+        min-height: calc(100vh - $navbar-height - $footer-height);
+        background: url('../img/main-background2.png') no-repeat fixed 50% 25% / cover;
+        .page-title {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 3rem;
+        }
+        .content-container {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 300px 1fr;
+            .main-content {
+                width: 75%;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: darken($primary-color, 60%);
+}
+
+li {
+    list-style: none;
+}
+
+.dflex {
+    display: flex;
+    &.jcc {
+        justify-content: center;
+    }
+    &.jcsb {
+        justify-content: space-between;
+    }
+    &.jcsa {
+        justify-content: space-around;
+    }
+    &.jcse {
+        justify-content: space-evenly;
+    }
+    &.jcfe {
+        justify-content: flex-end;
+    }
+    &.fdc {
+        flex-direction: column;
+    }
+    &.aic {
+        align-items: center;
+    }
+}
+
+.dinlineblock {
+    display: inline-block;
+}
